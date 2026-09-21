@@ -639,29 +639,27 @@ main {
 }
 
 .hero-content h1 {
-  font-size: clamp(2rem, 8vw, 3rem)
+  font-size: clamp(2rem, 5vw, 4rem);
   line-height: 1.15;
   margin-bottom: 0.5rem;
   font-family: var(--font-heading);
   font-weight: 700;
   font-style: italic;
   letter-spacing: -0.02em;
-  white-space: normal; 
+  white-space: normal;
   word-break: break-word;
+  overflow-wrap: anywhere;
 }
 
 /* 👇 NEW: Making "Hi, I'm" noticeably smaller and softer */
-.hero-content h1 .greeting {
-  font-family: var(--font-body); 
-  font-size: 0.45em; /* Reduced from 0.55em to 0.45em for a softer intro */
-  font-weight: 400;  
-  font-style: normal; 
-  opacity: 0.7;      /* Reduced to 0.7 so it doesn't fight the main name */
-  margin-right: 0.10em; /* More breathing room between "Hi, I'm" and her name */
-  /* 🔥 This raises it slightly above the baseline */
-  vertical-align: super; 
-
-}
+@media (max-width: 900px) {
+  /* 🔥 iPhone-safe name fix */
+  .hero-content h1 {
+    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
 
 .hero-content .tagline {
   font-size: clamp(1rem, 1.8vw, 1.4rem);
@@ -750,9 +748,6 @@ main {
     border: 1.5px solid rgba(255, 255, 255, 0.3);
   }
 
-@media (max-width: 900px) {
-  /* ... keep your existing hero changes ... */
-  
   /* --- MOBILE NAVIGATION --- */
   .nav-toggle {
     display: inline-flex;
