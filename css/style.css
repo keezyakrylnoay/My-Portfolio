@@ -1083,3 +1083,43 @@ main {
   font-size: 1rem;
   box-shadow: 0 4px 12px rgba(0, 44, 115, 0.2);
 }
+
+/* ==========================================
+   FINAL LAYOUT POLISH
+   - Nav overlap fix
+   - Nav spacing fix
+   - Section spacing fix
+========================================== */
+
+/* 1. Fix nav bar covering section headings */
+html {
+  scroll-padding-top: 100px;
+}
+
+section[id],
+.hero[id] {
+  scroll-margin-top: 100px;
+}
+
+/* 2. Fix nav spacing so all 10 items fit */
+.nav-links {
+  gap: 0.5rem;
+}
+
+.nav-link {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+/* 3. Reduce excessive space between sections */
+.section {
+  padding: 4rem 0;
+}
+
+.section + .section {
+  padding-top: 2rem;
+}
+
+.section-heading {
+  margin-bottom: 2rem;
+}
