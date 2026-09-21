@@ -15,6 +15,23 @@
   --shadow-strong: 0 28px 70px rgba(20, 33, 61, 0.1);
   --radius-large: 1.4rem;
 }
+/* Subtle pattern behind white sections */
+.section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 44, 115, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(0, 44, 115, 0.02) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.section {
+  position: relative;
+  overflow: hidden;
+}
+
 
 /* ==========================================
    NEW TOOLS & MODAL STYLES
@@ -369,12 +386,34 @@ main {
 .info-card,
 .portfolio-card,
 .contact-card,
-.timeline-item {
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid var(--color-border);
+.timeline-item,
+.tool-card-detailed,
+.portfolio-card-detailed {
+  background: #ffffff;
+  border: 1px solid rgba(0, 44, 115, 0.08);
   border-radius: 1.25rem;
-  padding: 1.4rem;
-  box-shadow: var(--shadow-soft);
+  padding: 1.5rem;
+  box-shadow: 
+    0 4px 20px rgba(0, 44, 115, 0.05),      /* Soft ambient shadow */
+    0 0 0 1px rgba(0, 44, 115, 0.03);        /* Subtle inner border */
+  transition: all 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Colored tint appears on hover */
+.about-card:hover,
+.info-card:hover,
+.portfolio-card:hover,
+.timeline-item:hover,
+.tool-card-detailed:hover,
+.portfolio-card-detailed:hover {
+  transform: translateY(-6px);
+  box-shadow: 
+    0 20px 40px rgba(0, 44, 115, 0.12),
+    0 0 30px rgba(0, 44, 115, 0.06);
+  border-color: rgba(0, 44, 115, 0.2);
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafd 100%);
 }
 
 .about-card p,
@@ -462,6 +501,19 @@ main {
   background: linear-gradient(135deg, var(--color-accent-blue-soft), var(--color-accent-green-soft));
   color: var(--color-accent-blue);
   font-size: 0.95rem;
+}
+
+.service-icon,
+.tool-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #002c73, #213b63);
+  color: #ffffff; /* White icon on navy circle */
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 44, 115, 0.2);
 }
 
 .timeline {
@@ -858,6 +910,44 @@ main {
 /* Hide leftover eyebrow labels (applies to ALL screens) */
 .section-heading .eyebrow {
   display: none;
+}
+
+/* Alternate section backgrounds for depth */
+.section:nth-child(even) {
+  background: linear-gradient(180deg, #f8fafd 0%, #ffffff 100%);
+}
+
+.section:nth-child(odd) {
+  background: #ffffff;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: 3rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+/* Bold vertical accent line next to each section title */
+.section-heading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 5px;
+  background: linear-gradient(180deg, #002c73, #213b63);
+  border-radius: 999px;
+}
+
+.section-heading h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  line-height: 1.15;
+  color: #002c73;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.02em;
 }
 
 /* ==========================================
