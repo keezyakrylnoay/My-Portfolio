@@ -801,6 +801,9 @@ main {
     transform: translateY(-12px);
     transition: all 0.3s ease;
     z-index: 999;
+    max-height: calc(100vh - 80px); /* Leaves room for the navbar */
+    overflow-y: auto; /* Allows scroll if menu is too tall */
+
   }
 
   .nav.nav-open .nav-links {
@@ -850,6 +853,11 @@ main {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+
+/* Hide leftover eyebrow labels (applies to ALL screens) */
+.section-heading .eyebrow {
+  display: none;
 }
 
 /* ==========================================
@@ -954,4 +962,6 @@ main {
 .portfolio-card.reveal-card.is-visible {
   transform: translateY(0) scale(1);
   opacity: 1;
+}
+
 }
