@@ -1,0 +1,961 @@
+:root {
+  /* These variables keep the premium palette easy to adjust later. */
+  --color-background: #f6f8fb;
+  --color-surface: #ffffff;
+  --color-accent-blue: #213b63;
+  --color-accent-blue-soft: #dfe8f4;
+  --color-accent-green: #385b4d;
+  --color-accent-green-soft: #e6efe9;
+  --color-text: #14213d;
+  --color-muted: #5e6875;
+  --color-border: rgba(20, 33, 61, 0.1);
+  --font-heading: "Cormorant Garamond", Georgia, serif;
+  --font-body: "Inter", Arial, sans-serif;
+  --shadow-soft: 0 16px 36px rgba(20, 33, 61, 0.07);
+  --shadow-strong: 0 28px 70px rgba(20, 33, 61, 0.1);
+  --radius-large: 1.4rem;
+}
+
+/* ==========================================
+   NEW TOOLS & MODAL STYLES
+========================================== */
+
+/* FIX: Make Tagline Smaller */
+.hero-content .tagline {
+  font-size: clamp(0.9rem, 1.2vw, 1.1rem);
+  font-weight: 500;
+  opacity: 0.8;
+  margin-bottom: 1.2rem;
+}
+
+/* --- NEW TOOLS CARDS (Detailed) --- */
+.tools-grid-detailed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.tool-card-detailed {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  padding: 1.8rem;
+  text-align: left;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.tool-card-detailed:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-strong);
+  border-color: #002c73;
+}
+
+.tool-card-detailed .tool-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.tool-card-detailed .tool-icon {
+  font-size: 1.5rem;
+  color: #002c73;
+}
+
+.tool-card-detailed .tool-category {
+  display: inline-block;
+  background: #002c73;
+  color: #ffffff;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  width: fit-content;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.tool-card-detailed p {
+  color: var(--color-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+/* --- WORK SAMPLES MODAL (POPUP) --- */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  padding: 2.5rem;
+  max-width: 600px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  box-shadow: var(--shadow-strong);
+}
+
+.modal-overlay.active .modal-content {
+  transform: scale(1);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-muted);
+  transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+  color: #002c73;
+}
+
+.modal-content h3 {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--color-text);
+}
+
+.modal-content p {
+  color: var(--color-muted);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.modal-preview-img {
+  width: 100%;
+  border-radius: 1rem;
+  margin-top: 1rem;
+  border: 1px solid var(--color-border);
+}
+
+/* --- WORK SAMPLES GRID --- */
+.portfolio-grid-detailed {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.portfolio-card-detailed {
+  background: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+}
+
+.portfolio-card-detailed:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-strong);
+  border-color: #002c73;
+}
+
+.portfolio-card-detailed h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+.portfolio-card-detailed p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/*
+  Global base styles:
+  - Why this exists: these rules create a clean, modern starting point for every element.
+*/
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(135deg, #f9fbfe 0%, #f3f6fa 100%);
+  color: var(--color-text);
+  line-height: 1.6;
+  min-height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 8% 8%, rgba(33, 59, 99, 0.06) 0%, transparent 28%),
+    radial-gradient(circle at 86% 18%, rgba(56, 91, 77, 0.04) 0%, transparent 30%);
+  pointer-events: none;
+  z-index: -2;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1120px, calc(100% - 2rem));
+  margin: 0 auto;
+}
+
+/*
+  Header and navigation:
+*/
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1rem 0;
+  background: rgba(249, 251, 254, 0.78);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(20, 33, 61, 0.06);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+}
+
+.site-header.scrolled {
+  background: rgba(249, 251, 254, 0.94);
+  box-shadow: 0 10px 28px rgba(20, 33, 61, 0.06);
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand {
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent-green);
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.25rem;
+  list-style: none;
+}
+
+.nav-link {
+  position: relative;
+  padding: 0.45rem 0.9rem; /* Added slightly more horizontal padding */
+  border-radius: 999px;
+  color: var(--color-muted);
+  transition: color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  border: 2px solid transparent; /* The invisible outline (takes up space so text doesn't jump) */
+}
+
+.nav-link:hover {
+  color: #002c73;
+  border-color: rgba(0, 44, 115, 0.3); /* Soft outline on hover */
+}
+
+.nav-link.active {
+  color: #002c73 !important;
+  background: transparent;
+  border: 2px solid #002c73; /* Only an outline */
+  box-shadow: 0 4px 14px rgba(0, 44, 115, 0.1); /* Subtle glow */
+}
+
+main {
+  padding-top: 80px; /* Fits exactly under the navbar */
+  padding-bottom: 3rem;
+}
+
+.section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.section + .section {
+  padding-top: 3.5rem;
+}
+
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.section-heading {
+  max-width: 720px;
+  margin-bottom: 2rem;
+}
+
+.section-heading h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.7rem, 2.4vw, 2.3rem);
+  line-height: 1.2;
+  color: var(--color-text);
+}
+
+.card-grid {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.about-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1.4fr 1fr;
+}
+
+/* --- RESTORE CARD STYLING --- */
+.about-card,
+.info-card,
+.portfolio-card,
+.contact-card,
+.timeline-item {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--color-border);
+  border-radius: 1.25rem;
+  padding: 1.4rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.about-card p,
+.info-card p,
+.timeline-item p,
+.contact-card p,
+.portfolio-card p {
+  color: var(--color-muted);
+}
+
+.value-list {
+  list-style: none;
+  display: grid;
+  gap: 0.7rem;
+  padding: 0;
+}
+
+.value-list li {
+  padding: 0.75rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(143, 184, 214, 0.12);
+  color: var(--color-text);
+}
+
+.services-grid,
+.tools-grid,
+.portfolio-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.info-card,
+.tool-card,
+.portfolio-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.45s ease, transform 0.45s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.info-card h3,
+.portfolio-card h3,
+.timeline-item h3 {
+  margin-bottom: 0.45rem;
+  color: var(--color-text);
+}
+
+.info-card:hover,
+.tool-card:hover,
+.portfolio-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 40px rgba(35, 50, 45, 0.1);
+  border-color: rgba(143, 184, 214, 0.4);
+}
+
+.tool-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 92px;
+  text-align: center;
+  font-weight: 600;
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--color-border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow-soft);
+}
+
+.tool-icon,
+.service-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-accent-blue-soft), var(--color-accent-green-soft));
+  color: var(--color-accent-blue);
+  font-size: 0.95rem;
+}
+
+.timeline {
+  display: grid;
+  gap: 1rem;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 1.4rem;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 1.2rem;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--color-accent-green);
+}
+
+.portfolio-thumb {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  padding: 1rem;
+  color: var(--color-text);
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(33, 59, 99, 0.12), rgba(56, 91, 77, 0.1));
+}
+
+.portfolio-thumb-graphics {
+  background: linear-gradient(135deg, rgba(33, 59, 99, 0.14), rgba(56, 91, 77, 0.1));
+}
+
+.portfolio-thumb-video {
+  background: linear-gradient(135deg, rgba(33, 59, 99, 0.1), rgba(223, 232, 244, 0.8));
+}
+
+.portfolio-thumb-docs {
+  background: linear-gradient(135deg, rgba(56, 91, 77, 0.1), rgba(33, 59, 99, 0.12));
+}
+
+.preview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  font-weight: 600;
+  color: var(--color-accent-green);
+}
+
+.contact-card {
+  max-width: 720px;
+}
+
+.contact-card ul {
+  list-style: none;
+  display: grid;
+  gap: 0.6rem;
+  margin: 1rem 0;
+  color: var(--color-muted);
+}
+
+.site-footer {
+  padding: 1.5rem 0 2rem;
+  border-top: 1px solid rgba(79, 123, 88, 0.12);
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.back-top {
+  color: var(--color-accent-green);
+  font-weight: 600;
+}
+/* ==========================================
+   HERO LAYOUT - 70% NAVY LEFT / 30% WHITE RIGHT
+========================================== */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: 90vh; /* Leaves 10% space at bottom to ALWAYS see buttons */
+  display: flex;
+  align-items: flex-end; /* Pushes everything to the bottom */
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff; 
+  margin: 0;
+  padding: 0;
+  padding-bottom: 30px; /* Extra buffer at the bottom for the buttons */
+}
+
+/* 70% Navy Blue background on the LEFT */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 70%; 
+  height: 100%;
+  background: #002c73; /* Your exact navy */
+  z-index: 0;
+}
+
+/* 30% White background on the RIGHT */
+.hero::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 70%;
+  width: 30%;
+  height: 100%;
+  background: #ffffff; 
+  z-index: 0;
+}
+
+/* The transparent PNG portrait - Centered on 70%, PINNED TO BOTTOM */
+.hero-bg-img {
+  position: absolute;
+  bottom: 0; /* PINS HER TO THE BOTTOM LINE */
+  left: 70%; /* Centers her exactly on the split line */
+  transform: translateX(-50%);
+  width: auto;
+  height: 100%; /* 🔥 MAKES HER TALLER and LARGER */
+  max-height: 100vh;
+  object-fit: contain;
+  z-index: 2; 
+  pointer-events: none;
+}
+
+/* Text container */
+.hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; 
+  z-index: 3; 
+  padding: 120px 5% 60px 5%; /* Reduced bottom padding to fit buttons */
+  margin: 0 auto;
+}
+
+.hero-content {
+  max-width: 55%; 
+  color: #ffffff;
+  padding-right: 2rem;
+  /* 🔥 NEW: This pulls the entire text block away from the far left edge */
+  margin-left: 2%; 
+}
+
+.hero-content .eyebrow {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.8rem, 5.5vw, 4.2rem);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.02em;
+  white-space: nowrap; 
+}
+
+/* 👇 NEW: Making "Hi, I'm" noticeably smaller and softer */
+.hero-content h1 .greeting {
+  font-family: var(--font-body); 
+  font-size: 0.45em; /* Reduced from 0.55em to 0.45em for a softer intro */
+  font-weight: 400;  
+  font-style: normal; 
+  opacity: 0.7;      /* Reduced to 0.7 so it doesn't fight the main name */
+  margin-right: 0.10em; /* More breathing room between "Hi, I'm" and her name */
+  /* 🔥 This raises it slightly above the baseline */
+  vertical-align: super; 
+
+}
+
+.hero-content .tagline {
+  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 1.2rem;
+}
+
+.hero-text {
+  /* 🔥 NEW: Reduced width and added a margin to stop it from hugging the left */
+  max-width: 480px; 
+  margin: 0 0 1.5rem 1rem; /* Adds a small left indent so it sits elegantly */
+  font-size: 1.05rem;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+
+/* ==========================================
+   RESPONSIVE DESIGN
+========================================== */
+@media (max-width: 1024px) {
+  .hero-content {
+    max-width: 50%;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    min-height: auto; 
+    padding-bottom: 0;
+    flex-direction: column;
+  }
+  
+  .hero::before {
+    width: 100%; 
+  }
+  .hero::after {
+    display: none;
+  }
+
+  .hero-bg-img {
+    position: relative;
+    bottom: auto;
+    left: auto;
+    transform: none;
+    width: 100%;
+    height: auto;
+    max-height: 50vh;
+    object-fit: contain;
+    object-position: center bottom;
+    margin-top: 80px;
+  }
+
+  .hero-inner {
+    flex-direction: column;
+    padding: 1rem 5% 50px 5%;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    color: #ffffff;
+    padding: 0;
+  }
+
+  .hero-text {
+    color: rgba(255, 255, 255, 0.8); 
+    margin: 0 auto 1.5rem auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .btn-secondary {
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+  }
+
+@media (max-width: 900px) {
+  /* ... keep your existing hero changes ... */
+  
+  /* --- MOBILE NAVIGATION --- */
+  .nav-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.28rem;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 0.5rem;
+  }
+
+  .nav-toggle span {
+    width: 26px;
+    height: 2.5px;
+    background: var(--color-text);
+    border-radius: 999px;
+    transition: transform 0.3s ease, opacity 0.3s ease, background 0.3s ease;
+  }
+
+  /* Animate hamburger into an X when open */
+  .nav.nav-open .nav-toggle span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+    background: #002c73;
+  }
+  .nav.nav-open .nav-toggle span:nth-child(2) {
+    opacity: 0;
+  }
+  .nav.nav-open .nav-toggle span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+    background: #002c73;
+  }
+
+  /* --- MOBILE MENU LINKS --- */
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--color-border);
+    box-shadow: 0 15px 30px rgba(20, 33, 61, 0.08);
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: all 0.3s ease;
+    z-index: 999;
+  }
+
+  .nav.nav-open .nav-links {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    padding: 1.2rem 0;
+  }
+
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .nav-link {
+    display: inline-block;
+    padding: 0.7rem 1.8rem;
+    font-size: 1rem;
+    color: var(--color-text);
+    border-radius: 999px;
+    transition: all 0.25s ease;
+  }
+
+  /* Active state on mobile — clean outline like desktop */
+  .nav-link.active {
+    color: #002c73 !important;
+    background: transparent;
+    border: 2px solid #002c73;
+    box-shadow: 0 4px 14px rgba(0, 44, 115, 0.1);
+  }
+
+  .nav-link:hover {
+    color: #002c73;
+    background: rgba(0, 44, 115, 0.05);
+    border-color: transparent;
+  }
+
+  /* ... keep your existing grid resets and footer changes ... */
+  .about-grid,
+  .services-grid,
+  .tools-grid,
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* ==========================================
+   PREMIUM BUTTONS & UNDERGLOW EFFECTS
+========================================== */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 2.4rem;
+  border-radius: 999px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #ffffff;
+  color: #002c73;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 44, 115, 0.25);
+  background: #f4f9ff;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(255, 255, 255, 0.15);
+}
+
+/* --- SOCIAL ICONS --- */
+.hero-socials {
+  display: flex;
+  gap: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #ffffff;
+  color: #002c73;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile buttons */
+@media (max-width: 900px) {
+  .btn-secondary {
+    color: #ffffff;
+    border: 1.5px solid rgba(255, 255, 255, 0.3);
+  }
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+/* Cards underglow */
+.info-card:hover,
+.tool-card:hover,
+.portfolio-card:hover,
+.timeline-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(24, 50, 82, 0.12), 0 0 30px rgba(56, 91, 77, 0.08);
+  border-color: rgba(33, 59, 99, 0.2);
+}
+
+/* ==========================================
+   SCROLL SURFACE EFFECT (FIXED & CLEAN)
+========================================== */
+.card-grid .reveal-card,
+.timeline-item.reveal-card,
+.portfolio-card.reveal-card {
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+  transform: translateY(50px) scale(0.98);
+  opacity: 0;
+}
+
+/* This is the magic line that brings them back! */
+.card-grid .reveal-card.is-visible,
+.timeline-item.reveal-card.is-visible,
+.portfolio-card.reveal-card.is-visible {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
