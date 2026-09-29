@@ -8,20 +8,25 @@ const sections = document.querySelectorAll('main section[id], main .hero[id]');
 const revealItems = document.querySelectorAll('.reveal');
 
 function updateActiveLink() {
-  const scrollPosition = window.scrollY + 150;
+  const navbarHeight = header ? header.offsetHeight : 80;
+  const scrollMarker = window.scrollY + navbarHeight + 1;
+
+  let currentSection = sections[0];
 
   sections.forEach((section) => {
-    const top = section.offsetTop;
-    const bottom = top + section.offsetHeight;
-
-    if (scrollPosition >= top && scrollPosition < bottom) {
-      navLinks.forEach((link) => link.classList.remove('active'));
-      const activeLink = document.querySelector(`.nav-link[href="#${section.id}"]`);
-      if (activeLink) {
-        activeLink.classList.add('active');
-      }
+    const sectionTop = section.offsetTop;
+    if (scrollMarker >= sectionTop) {
+      currentSection = section;
     }
   });
+
+  if (currentSection) {
+    navLinks.forEach((link) => link.classList.remove('active'));
+    const activeLink = document.querySelector(`.nav-link[href="#${currentSection.id}"]`);
+    if (activeLink) {
+      activeLink.classList.add('active');
+    }
+  }
 }
 
 navLinks.forEach((link) => {

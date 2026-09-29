@@ -277,24 +277,33 @@ a {
   box-shadow: 0 10px 28px rgba(20, 33, 61, 0.06);
 }
 
+/* --- NAV: Centered single-group layout --- */
 .nav {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center; /* Centers the whole group */
+  gap: 2rem; /* Space between brand and links */
 }
 
 .brand {
   font-family: var(--font-heading);
-  font-size: 1.35rem;
-  letter-spacing: 0.12em;
+  font-size: 2rem;         /* Slightly larger */
+  letter-spacing: 0.15em;    /* Wider spacing for premium look */
+  font-weight: 700;          /* Bold */
+  font-style: italic;
   text-transform: uppercase;
-  color: var(--color-accent-green);
+  color: #002c73;  
+  flex-shrink: 0;
+  white-space: nowrap; /* Prevents the brand from wrapping */
 }
 
+/* NAV LINKS: All together, in one row */
 .nav-links {
   display: flex;
-  gap: 1.25rem;
+  align-items: center;
+  gap: 0.5rem;
   list-style: none;
+  flex-wrap: nowrap; /* Forces everything on one line */
 }
 
 .nav-link {
@@ -319,18 +328,10 @@ a {
 }
 
 main {
-  padding-top: 80px; /* Fits exactly under the navbar */
+  padding-top: 0; /* No extra padding — the hero already accounts for the navbar */
   padding-bottom: 3rem;
 }
 
-.section {
-  padding: 6rem 0;
-  position: relative;
-}
-
-.section + .section {
-  padding-top: 3.5rem;
-}
 
 .section::before {
   content: "";
@@ -339,11 +340,6 @@ main {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.35) 0%, transparent 100%);
   pointer-events: none;
   z-index: -1;
-}
-
-.section-heading {
-  max-width: 720px;
-  margin-bottom: 2rem;
 }
 
 .section-heading h2 {
@@ -556,19 +552,6 @@ main {
 /* ==========================================
    HERO LAYOUT - 70% NAVY LEFT / 30% WHITE RIGHT
 ========================================== */
-.hero {
-  position: relative;
-  width: 100%;
-  min-height: 90vh; /* Leaves 10% space at bottom to ALWAYS see buttons */
-  display: flex;
-  align-items: flex-end; /* Pushes everything to the bottom */
-  justify-content: center;
-  overflow: hidden;
-  background: #ffffff; 
-  margin: 0;
-  padding: 0;
-  padding-bottom: 30px; /* Extra buffer at the bottom for the buttons */
-}
 
 /* 70% Navy Blue background on the LEFT */
 .hero::before {
@@ -990,11 +973,6 @@ main {
   background: #ffffff;
 }
 
-/* 2. SUBTLE BACKGROUND PATTERN BEHIND SECTIONS */
-.section {
-  position: relative;
-  overflow: hidden;
-}
 
 .section::after {
   content: "";
@@ -1005,35 +983,6 @@ main {
     radial-gradient(circle at 80% 70%, rgba(0, 44, 115, 0.02) 0%, transparent 50%);
   pointer-events: none;
   z-index: -1;
-}
-
-/* 3. BOLD SECTION HEADINGS WITH NAVY ACCENT BAR */
-.section-heading {
-  max-width: 720px;
-  margin-bottom: 3rem;
-  position: relative;
-  padding-left: 1.4rem;
-}
-
-.section-heading::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.4rem;
-  bottom: 0.4rem;
-  width: 5px;
-  background: linear-gradient(180deg, #002c73, #213b63);
-  border-radius: 999px;
-}
-
-.section-heading h2 {
-  font-family: var(--font-heading);
-  font-size: clamp(2.2rem, 3.5vw, 3rem);
-  line-height: 1.15;
-  color: #002c73;
-  font-weight: 700;
-  font-style: italic;
-  letter-spacing: -0.02em;
 }
 
 /* 4. ENHANCED HOVERABLE CARDS */
@@ -1070,7 +1019,7 @@ main {
   background: linear-gradient(180deg, #ffffff 0%, #f8fafd 100%);
 }
 
-/* 5. COLORED ICON CIRCLES */
+/* 5. COLORED ICON CIRCLES (inverted for visibility) */
 .service-icon,
 .tool-icon {
   display: inline-grid;
@@ -1078,10 +1027,12 @@ main {
   width: 2.5rem;
   height: 2.5rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #002c73, #213b63);
-  color: #ffffff;
+  background: #ffffff;                 /* White background */
+  color: #002c73 !important;           /* Navy letters/emoji text */
+  font-weight: 700;                     /* Bold letters stand out */
   font-size: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 44, 115, 0.2);
+  border: 2px solid #002c73;           /* Navy ring around it */
+  box-shadow: 0 4px 12px rgba(0, 44, 115, 0.15);
 }
 
 /* ==========================================
@@ -1091,35 +1042,116 @@ main {
    - Section spacing fix
 ========================================== */
 
-/* 1. Fix nav bar covering section headings */
+/* --- HERO BUTTONS & SOCIALS SPACING --- */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem 1.5rem; /* 1rem row-gap, 1.5rem column-gap */
+  margin-top: 1.5rem;
+  margin-bottom: 1rem; /* Space between buttons and socials */
+}
+
+.hero-socials {
+  display: flex;
+  gap: 0.8rem;
+  margin-left: 0.5rem;
+}
+
+/* Make social icons circular with proper spacing */
+.social-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.social-icon:hover {
+  background: #ffffff;
+  color: #002c73;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* ==========================================
+   FINAL AUTHORITATIVE OVERRIDE
+   - Scroll offset
+   - Section padding
+   - Hero layout
+========================================== */
+
+/* 1. Smooth scroll + correct offset */
 html {
-  scroll-padding-top: 100px;
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
 }
 
-section[id],
-.hero[id] {
-  scroll-margin-top: 100px;
+main section[id] {
+  scroll-margin-top: 90px;
 }
 
-/* 2. Fix nav spacing so all 10 items fit */
-.nav-links {
-  gap: 0.5rem;
+main .hero[id] {
+  scroll-margin-top: 0;
 }
 
-.nav-link {
-  padding: 0.4rem 0.75rem;
-  font-size: 0.9rem;
+/* 2. Hero — no cutoff, no strip */
+.hero {
+  position: relative;
+  width: 100%;
+  min-height: auto;
+  padding: 100px 0 40px 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: #ffffff;
 }
 
-/* 3. Reduce excessive space between sections */
+/* ==========================================
+   FINAL — SECTIONS & HEADINGS (do not duplicate)
+========================================== */
 .section {
-  padding: 4rem 0;
+  padding: 2rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .section + .section {
-  padding-top: 2rem;
+  padding-top: 0;
 }
 
 .section-heading {
-  margin-bottom: 2rem;
+  max-width: 720px;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  padding-left: 1.4rem;
+  position: relative;
+}
+
+.section-heading::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 5px;
+  background: linear-gradient(180deg, #002c73, #213b63);
+  border-radius: 999px;
+}
+
+.section-heading h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  line-height: 1.15;
+  color: #002c73;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: -0.02em;
 }
