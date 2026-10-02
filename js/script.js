@@ -85,8 +85,7 @@ function openModal(title, description) {
                 <h3>${title}</h3>
                 <p>${description}</p>
                 <div style="background: #f6f8fb; padding: 2rem; border-radius: 1rem; text-align: center; color: #5e6875;">
-                    <p>🔍 Preview coming soon</p>
-                    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Your actual image, video, or PDF link will go here.</p>
+                    <p>🔍 Sample preview coming soon</p>
                 </div>
             </div>
         </div>
