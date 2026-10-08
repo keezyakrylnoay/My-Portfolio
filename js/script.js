@@ -231,14 +231,13 @@ function openYouTubeGallery(embedUrls, title) {
                 <button class="modal-close" onclick="closeYouTubeGallery()">&times;</button>
                 <h3>${title}</h3>
                 <div class="video-wrapper">
-                    <iframe 
-                        id="videoFrame"
-                        src="${embedUrls[0]}"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen>
-                    </iframe>
-                </div>
+                  <iframe 
+                      id="videoFrame"
+                      src="${embedUrls[0]}"
+                      frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen>
+                  </iframe>
                 <div class="gallery-dots" id="videoDots"></div>
                 <p class="gallery-counter" id="videoCounter">1 / ${embedUrls.length}</p>
             </div>
