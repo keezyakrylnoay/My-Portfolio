@@ -216,7 +216,11 @@
 
 html {
   scroll-behavior: smooth;
-  height: 100%;
+  scroll-padding-top: 90px;
+}
+
+main section[id] {
+  scroll-margin-top: 90px;
 }
 
 body {
@@ -1154,4 +1158,218 @@ main .hero[id] {
   font-weight: 700;
   font-style: italic;
   letter-spacing: -0.02em;
+}
+
+/* --- GALLERY MODAL --- */
+.gallery-modal {
+    max-width: 92vw;
+    width: 92vw;
+    max-height: 92vh;
+    height: auto;
+    padding: 1rem 1.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.gallery-modal h3 {
+    font-size: 1.3rem;
+    margin: 0 0 0.5rem 0;
+    flex-shrink: 0;
+}
+
+.gallery-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 0;
+    margin: 0.5rem 0;
+}
+
+.gallery-wrapper img {
+    max-height: calc(92vh - 180px); /* Leaves room for title, dots, and counter */
+    max-width: 100%;
+    border-radius: 0.5rem;
+    object-fit: contain;
+    user-select: none;
+    display: block;
+}
+
+.gallery-dots {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+}
+
+.gallery-counter {
+    font-size: 0.85rem;
+    color: #5e6875;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
+}
+
+.gallery-nav {
+    background: rgba(0, 44, 115, 0.85);
+    color: #ffffff;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all 0.2s ease;
+    z-index: 2;
+}
+
+.gallery-nav:hover { background: #002c73; }
+.gallery-prev { left: 0.5rem; }
+.gallery-next { right: 0.5rem; }
+
+.gallery-dots {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.gallery-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(0, 44, 115, 0.2);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.gallery-dot.active {
+    background: #002c73;
+    transform: scale(1.3);
+}
+
+.gallery-counter {
+    font-size: 0.9rem;
+    color: #5e6875;
+    margin-top: 0.5rem;
+}
+
+/* --- Portfolio Hints --- */
+.portfolio-hint {
+    font-size: 0.95rem;
+    color: #5e6875;
+    margin-top: 0.5rem;
+    font-style: italic;
+    opacity: 0.85;
+}
+
+.portfolio-disclaimer {
+    font-size: 0.78rem;
+    color: #8b95a3;
+    margin-top: 0.4rem;
+    letter-spacing: 0.02em;
+    opacity: 0.75;
+}
+
+/* --- Single Preview Thumbnail (for tall images) --- */
+.portfolio-card-single-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 0.8rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* --- Video Card Preview --- */
+.video-card-preview {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: linear-gradient(135deg, #1a1a1a, #002c73);
+    border-radius: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.video-play-icon {
+    font-size: 3rem;
+    color: #C9A961;
+    opacity: 0.9;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-card-detailed:hover .video-play-icon {
+    transform: scale(1.15);
+}
+
+/* --- YouTube Video Modal (9:16 vertical) --- */
+.video-modal {
+    max-width: 98vw;
+    width: 98vw;
+    max-height: 98vw;
+    padding: 1rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.video-modal h3 {
+    font-size: 1rem;
+    margin: 0 0 0.75rem 0;
+    color: #002c73;
+    flex-shrink: 0;
+}
+
+.video-wrapper {
+    position: relative;
+    /* 9:16 aspect ratio: height = width * 16/9 */
+    /* We base height on available space: 95vh - 160px for title/dots/counter */
+    height: calc(95vh - 160px);
+    aspect-ratio: 9 / 16;
+    max-height: 100%;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.video-modal .gallery-dots {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-top: 0.75rem;
+    flex-shrink: 0;
+}
+
+.video-modal .gallery-counter {
+    font-size: 0.85rem;
+    color: #5e6875;
+    margin-top: 0.25rem;
+    flex-shrink: 0;
 }

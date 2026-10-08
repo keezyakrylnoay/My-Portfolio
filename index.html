@@ -70,7 +70,7 @@
         <div class="about-grid">
             <article class="about-card">
                 <p>
-                    I'm Keezya, a Virtual Assistant with hands-on experience in administrative support, social media management, and digital content creation. I help businesses stay organized by managing day-to-day tasks, creating, editing, and preparing materials, and supporting their content needs. My goal is to help clients complete their business goals while continuously pursuing productivity and efficiency.
+                    I'm Keezya, a Virtual Assistant with hands-on experience in administrative support, customer service, payment records, social media management, and digital content creation. I help businesses stay organized by managing day-to-day tasks, handling customer and payment concerns, creating and editing materials, and supporting their content needs. My goal is to help clients complete their business goals while continuously pursuing productivity and efficiency.
                 </p>
                 <p style="margin-top: 1rem;">
                     Currently expanding my skills in automation and marketing while continuously improving digital productivity and client support.
@@ -79,11 +79,11 @@
             <article class="about-card">
                 <ul class="value-list">
                     <li>Administrative Support</li>
+                    <li>Customer Service</li>
+                    <li>Payment Records &amp; Refunds</li>
                     <li>Social Media Management</li>
                     <li>Content Creation &amp; Editing</li>
-                    <li>Data Entry &amp; File Organization</li>
-                    <li>Graphic Design</li>
-                    <li>Video Editing</li>
+                    <li>Graphic Design &amp; Video Editing</li>
                 </ul>
             </article>
         </div>
@@ -172,61 +172,144 @@
     <section id="portfolio" class="section container reveal">
         <div class="section-heading">
             <h2>My Work Samples</h2>
+            <p class="portfolio-hint">Click any card for a closer look.</p>
+            <p class="portfolio-disclaimer">All brand names and assets shown are for mockup and portfolio purposes only.</p>
         </div>
-        <div class="portfolio-grid-detailed">
-            <!-- Card 1 -->
-            <div class="portfolio-card-detailed reveal-card is-visible" onclick="openModal('Administrative Support', 'Inbox Triage, Calendar Coordination, and Weekly Reports.')">
-                <h4>Administrative Support</h4>
-                <p>Calendar, inbox, and reporting support workflows.</p>
-            </div>
-            <!-- Card 2 -->
-            <div class="portfolio-card-detailed reveal-card is-visible" onclick="openModal('Graphic Design', 'Social graphics, promos, and brand templates.')">
-                <h4>Graphic Design</h4>
-                <p>Branding, social graphics, and polished visuals.</p>
-            </div>
-            <!-- Card 3 -->
-            <div class="portfolio-card-detailed reveal-card is-visible" onclick="openModal('Video Editing', 'Short-form edits, subtitles, and motion text.')">
-                <h4>Video Editing</h4>
-                <p>Reels, short-form content, and podcast editing.</p>
-            </div>
-            <!-- Card 4 -->
-            <div class="portfolio-card-detailed reveal-card is-visible" onclick="openModal('E-commerce Support', 'Product listings, inventory updates, and order checks.')">
-                <h4>E-commerce Support</h4>
-                <p>Product listings, inventory tracking, and order verification.</p>
-            </div>
-            <!-- Card 5 -->
-            <div class="portfolio-card-detailed reveal-card is-visible" onclick="openModal('Content Writing', 'Blog drafts, product copy, and email content.')">
-                <h4>Content Writing</h4>
-                <p>Blog articles, product descriptions, and email drafts.</p>
-            </div>
-            <!-- Card 6 -->
-            <div class="portfolio-card-detailed reveal-card is-visible" onclick="openModal('Tutoring Materials', 'Lesson plans, worksheets, and study guides.')">
-                <h4>Tutoring Materials</h4>
-                <p>Lesson plans, worksheets, and professional development plans.</p>
-            </div>
+    <div class="portfolio-grid-detailed">
+    <!-- 1. Brand Identity -->
+    <div class="portfolio-card-detailed reveal-card"
+         onclick="openImageGallery([
+            'assets/portfolio/graphics/LUME_Logo.png',
+            'assets/portfolio/graphics/LUME_Monogram.png',
+            'assets/portfolio/graphics/LUME_Monogram_White.png'
+         ], 'Brand Identity — LUMÉ')">
+        <div class="card-collage">
+            <img src="assets/portfolio/graphics/LUME_Logo.png" alt="">
+            <img src="assets/portfolio/graphics/LUME_Monogram.png" alt="">
+            <img src="assets/portfolio/graphics/LUME_Monogram_White.png" alt="">
         </div>
-    </section>
+        <h4>Brand Identity</h4>
+        <p>Logo and monogram design for a luxury brand.</p>
+    </div>
 
-    <!-- Experience (Based on your actual Resume) -->
+    <!-- 2. Instagram Posts -->
+    <div class="portfolio-card-detailed reveal-card"
+         onclick="openImageGallery([
+            'assets/portfolio/graphics/LUME_Post_01_Elegant_Dining.png',
+            'assets/portfolio/graphics/LUME_Post_02_Signature_Dish.png',
+            'assets/portfolio/graphics/LUME_Post_03_Quote.png',
+            'assets/portfolio/graphics/LUME_Post_04_Chefs_Tasting_Menu.png',
+            'assets/portfolio/graphics/LUME_Post_05_Our_Story.png'
+         ], 'Instagram Posts — LUMÉ')">
+        <div class="card-collage">
+            <img src="assets/portfolio/graphics/LUME_Post_01_Elegant_Dining.png" alt="">
+            <img src="assets/portfolio/graphics/LUME_Post_02_Signature_Dish.png" alt="">
+            <img src="assets/portfolio/graphics/LUME_Post_03_Quote.png" alt="">
+        </div>
+        <h4>Instagram Posts</h4>
+        <p>5-post cohesive grid for a luxury dining brand.</p>
+    </div>
+
+    <!-- 3. Instagram Stories -->
+    <div class="portfolio-card-detailed reveal-card"
+         onclick="openImageGallery([
+            'assets/portfolio/graphics/LUME_Story_01_Promotion.png',
+            'assets/portfolio/graphics/LUME_Story_02_Poll.png',
+            'assets/portfolio/graphics/LUME_Story_03_Behind_The_Scenes.png'
+         ], 'Instagram Stories — LUMÉ')">
+        <img src="assets/portfolio/graphics/LUME_Story_01_Promotion.png" 
+             alt="Instagram Stories" 
+             class="portfolio-card-single-thumb">
+        <h4>Instagram Stories</h4>
+        <p>Promotional, interactive, and behind-the-scenes stories.</p>
+    </div>
+
+    <!-- 4. Carousel Design -->
+    <div class="portfolio-card-detailed reveal-card"
+         onclick="openImageGallery([
+            'assets/portfolio/graphics/LUME_Carousel_01_Cover.png',
+            'assets/portfolio/graphics/LUME_Carousel_02_Tip_Impeccable_Service.png',
+            'assets/portfolio/graphics/LUME_Carousel_03_Tip_Curated_Wine.png',
+            'assets/portfolio/graphics/LUME_Carousel_04_Tip_Seasonal_Ingredients.png',
+            'assets/portfolio/graphics/LUME_Carousel_05_Tip_Attention_To_Detail.png',
+            'assets/portfolio/graphics/LUME_Carousel_06_Tip_Immersive_Ambience.png',
+            'assets/portfolio/graphics/LUME_Carousel_07_CTA_Reserve_Table.png'
+         ], 'Carousel Design — LUMÉ')">
+        <div class="card-collage">
+            <img src="assets/portfolio/graphics/LUME_Carousel_01_Cover.png" alt="">
+            <img src="assets/portfolio/graphics/LUME_Carousel_02_Tip_Impeccable_Service.png" alt="">
+            <img src="assets/portfolio/graphics/LUME_Carousel_03_Tip_Curated_Wine.png" alt="">
+        </div>
+        <h4>Carousel Design</h4>
+        <p>7-slide educational carousel with brand consistency.</p>
+    </div>
+
+    <!-- 5. Video Editing -->
+    <div class="portfolio-card-detailed reveal-card"
+        onclick="openYouTubeGallery([
+            'https://www.youtube.com/embed/YEcuYZU6I8c',
+            'https://www.youtube.com/embed/OfZtgRnYhSI'
+        ], 'Video Editing — Speed-Ramped Drone Showcase')">
+        <div class="video-card-preview">
+            <span class="video-play-icon">▶</span>
+        </div>
+        <h4>Video Editing</h4>
+        <p>Speed-ramped drone edits and short-form samples.</p>
+    </div>
+
+    <!-- 6. Administrative Support -->
+    <div class="portfolio-card-detailed reveal-card" onclick="openModal('Administrative Support', 'Inbox Triage, Calendar Coordination, and Weekly Reports.')">
+        <h4>Administrative Support</h4>
+        <p>Calendar, inbox, and reporting support workflows.</p>
+    </div>
+
+    <!-- 7. E-commerce Support -->
+    <div class="portfolio-card-detailed reveal-card" onclick="openModal('E-commerce Support', 'Product listings, inventory updates, and order checks.')">
+        <h4>E-commerce Support</h4>
+        <p>Product listings, inventory tracking, and order verification.</p>
+    </div>
+
+    <!-- 8. Content Writing -->
+    <div class="portfolio-card-detailed reveal-card" onclick="openModal('Content Writing', 'Blog drafts, product copy, and email content.')">
+        <h4>Content Writing</h4>
+        <p>Blog articles, product descriptions, and email drafts.</p>
+    </div>
+
+    <!-- 9. Tutoring Materials -->
+    <div class="portfolio-card-detailed reveal-card" onclick="openModal('Tutoring Materials', 'Lesson plans, worksheets, and study guides.')">
+        <h4>Tutoring Materials</h4>
+        <p>Lesson plans, worksheets, and professional development plans.</p>
+    </div>
+</div>
+
+    <!-- Experience -->
     <section id="experience" class="section container reveal">
         <div class="section-heading">
             <h2>My Experience</h2>
         </div>
         <div class="timeline">
-            <article class="timeline-item reveal-card is-visible">
-                <h3>Virtual Assistant | Social Media & Content Support</h3>
-                <span class="timeline-date">Mar 2023 – Present</span>
-                <p>Create and adapt social media content according to client voice, tone, and brand identity. Repurpose blogs, articles, and podcasts into engaging digital content.</p>
+            <article class="timeline-item reveal-card">
+                <h3>Freelance – Virtual Assistant | Social Media & Content Support</h3>
+                <span class="timeline-date">Mar 2023 – July 2026</span>
+                <p>Create and adapt social media content to match each client's voice, tone, and brand identity. Repurpose blogs, articles, podcasts, and personal posts into social media content using Canva, CapCut, Buffer, and Meta Business Suite.</p>
             </article>
-            <article class="timeline-item reveal-card is-visible">
+
+            <article class="timeline-item reveal-card">
+                <h3>Freelance – Virtual Assistant | Customer Service, Payment & Admin Support</h3>
+                <span class="timeline-date">Nov 2023 – Jan 2026</span>
+                <p>Managed customer inquiries, membership cancellations, and account concerns for a fitness client using Arketa. Processed customer refunds through PayPal, issued promo codes, and recorded timesheet information used for client invoicing and payroll. Handled customer and payment information with accuracy, discretion, and confidentiality.</p>
+            </article>
+
+            <article class="timeline-item reveal-card">
                 <h3>Customer Service & Retail Support</h3>
                 <span class="timeline-date">Jan 2022 – Feb 2023</span>
-                <p>Assisted customers with product inquiries and purchasing needs while maintaining professional service in a fast-paced retail environment.</p>
+                <p>Assisted customers with product inquiries and purchasing needs while providing professional service. Supported product organization, presentation, and daily store operations. Handled customer interactions in a fast-paced environment while maintaining attentiveness and professionalism.</p>
             </article>
-            <article class="timeline-item reveal-card is-visible">
-                <h3>Work Immersion – Data Entry & Records</h3>
+
+            <article class="timeline-item reveal-card">
+                <h3>Work Immersion – Data Entry & Records Support</h3>
                 <span class="timeline-date">2022</span>
-                <p>Assisted with data entry, record organization, and spreadsheet-based information management with a focus on accuracy and confidentiality.</p>
+                <p>Assisted with data entry, record organization, and spreadsheet-based information management under supervision. Handled health-related records with attention to accuracy and confidentiality. Applied basic spreadsheet and information-management practices to support record organization.</p>
             </article>
         </div>
     </section>
