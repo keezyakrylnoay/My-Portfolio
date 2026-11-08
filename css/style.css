@@ -553,7 +553,7 @@ main {
   position: absolute;
   top: 0;
   left: 0;
-  width: 70%; 
+  width: 75%; 
   height: 100%;
   background: #002c73; /* Your exact navy */
   z-index: 0;
@@ -564,8 +564,8 @@ main {
   content: "";
   position: absolute;
   top: 0;
-  left: 70%;
-  width: 30%;
+  left: 75%;
+  width: 25%;
   height: 100%;
   background: #ffffff; 
   z-index: 0;
@@ -575,7 +575,7 @@ main {
 .hero-bg-img {
   position: absolute;
   bottom: 0; /* PINS HER TO THE BOTTOM LINE */
-  left: 70%; /* Centers her exactly on the split line */
+  left: 75%; /* Centers her exactly on the split line */
   transform: translateX(-50%);
   width: auto;
   height: 100%; /* 🔥 MAKES HER TALLER and LARGER */
@@ -595,14 +595,14 @@ main {
   align-items: center;
   justify-content: flex-start; 
   z-index: 3; 
-  padding: 120px 5% 60px 5%; /* Reduced bottom padding to fit buttons */
+  padding: 120px 5% 60px 4%; /* Reduced bottom padding to fit buttons */
   margin: 0 auto;
 }
 
 .hero-content {
-  max-width: 55%; 
+  max-width: 60%; 
   color: #ffffff;
-  padding-right: 2rem;
+  padding-right: 1rem;
   /* 🔥 NEW: This pulls the entire text block away from the far left edge */
   margin-left: 2%; 
 }
@@ -1098,14 +1098,14 @@ main .hero[id] {
 .hero {
   position: relative;
   width: 100%;
-  min-height: auto;
-  padding: 100px 0 40px 0;
-  margin: 0;
+  min-height: 90vh; /* Gives enough room without huge gaps */
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* Anchors text to bottom */
   justify-content: center;
   overflow: hidden;
   background: #ffffff;
+  margin: 0;
+  padding: 40px 0 0 0; /* Reduces the huge space from the navbar */
 }
 
 /* ==========================================
@@ -1217,8 +1217,13 @@ main .hero[id] {
     top: 50%;
     transform: translateY(-50%);
     transition: all 0.2s ease;
-    z-index: 2;
+    z-index: 10; /* Need high z-index to stay above iframe */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.gallery-prev { left: 0.5rem; }
+.gallery-next { right: 0.5rem; }
 
 .gallery-nav:hover { background: #002c73; }
 .gallery-prev { left: 0.5rem; }
@@ -1328,9 +1333,9 @@ main .hero[id] {
 .video-wrapper {
     position: relative;
     width: 100%;
-    max-width: 480px;
-    aspect-ratio: 9 / 16;
-    max-height: calc(95vh - 140px);
+    max-width: 650px; /* Narrower to fit vertical videos */
+    aspect-ratio: 9 / 16; /* Forces a vertical shape */
+    max-height: calc(95vh - 140px); /* Fits the screen height */
     margin: 0 auto;
     border-radius: 0.5rem;
     overflow: hidden;

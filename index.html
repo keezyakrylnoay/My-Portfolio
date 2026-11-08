@@ -48,8 +48,12 @@
 
                 <p class="tagline">Virtual Assistant | Administrative &amp; Creative Support</p>
                 <p class="hero-text">
-                    Detail-oriented Virtual Assistant with experience in administrative support, social media management, data entry, graphic design, and video editing. Reliable, organized, and quick to adapt to new tools and workflows, committed to delivering accurate, high-quality work while continuously growing in the virtual assistance field.
-                </p>                <div class="hero-actions">
+                    Detail-oriented Virtual Assistant with experience in administrative support, social media management, data entry, graphic design, and video editing. Reliable, organized, and quick to adapt to new tools and workflows, committed to delivering accurate, high-quality work while continuously growing in the virtual assistance field. 
+                    <br><br>
+                    I also bring a strong eye for content quality, reviewing video hooks, pacing, and CTAs to ensure every piece of creative work aligns perfectly with your brand's standards.
+                </p> 
+                               
+                <div class="hero-actions">
                     <a class="btn btn-primary" href="#portfolio">View My Work</a>
                     <a class="btn btn-secondary" href="#contact">Get In Touch</a>
                     <div class="hero-socials">
@@ -75,6 +79,10 @@
                 <p style="margin-top: 1rem;">
                     Currently expanding my skills in automation and marketing while continuously improving digital productivity and client support.
                 </p>
+                <p style="margin-top: 1rem;">
+                    Because of my administrative background, I naturally excel at quality control. I have a sharp eye for detail, which allows me to review content, analyze pacing, and provide constructive feedback to creators and team members.
+                </p>
+
             </article>
             <article class="about-card">
                 <ul class="value-list">
@@ -84,6 +92,7 @@
                     <li>Social Media Management</li>
                     <li>Content Creation &amp; Editing</li>
                     <li>Graphic Design &amp; Video Editing</li>
+                    <li>Email Marketing &amp; Sales Support</li>
                 </ul>
             </article>
         </div>
@@ -104,6 +113,9 @@
             <article class="info-card reveal-card is-visible"><span class="service-icon" aria-hidden="true">⬢</span><h3>Graphic Design</h3><p>Clean visuals, polished materials, and simple brand-ready design support.</p></article>
             <article class="info-card reveal-card is-visible"><span class="service-icon" aria-hidden="true">▶</span><h3>Video Editing</h3><p>Short-form edits, social content, and concise storytelling.</p></article>
             <article class="info-card reveal-card is-visible"><span class="service-icon" aria-hidden="true">♡</span><h3>Customer Service</h3><p>Friendly communication, client follow-up, and dependable support.</p></article>
+            <article class="info-card reveal-card is-visible"><span class="service-icon" aria-hidden="true">✔</span><h3>Content Review &amp; QC</h3><p>Evaluating video pacing, hooks, and CTAs to ensure high-quality, engaging content before publishing.</p></article>
+            <article class="info-card reveal-card is-visible"><span class="service-icon" aria-hidden="true">✉</span><h3>Email Marketing &amp; Sales</h3><p>Supporting e-commerce brands with basic email campaign setup and customer retention strategies.</p></article>
+
         </div>
     </section>
 
@@ -165,6 +177,11 @@
                 <span class="tool-category">Organization</span>
                 <p>File management and course delivery.</p>
             </article>
+            <article class="tool-card-detailed reveal-card is-visible">
+                <div class="tool-header"><span class="tool-icon">K</span> Klaviyo</div>
+                <span class="tool-category">Email Marketing</span>
+                <p>Currently learning email campaign management and basic e-commerce automations.</p>
+            </article>
         </div>
     </section>
 
@@ -176,6 +193,7 @@
             <p class="portfolio-disclaimer">All brand names and assets shown are for mockup and portfolio purposes only.</p>
         </div>
     <div class="portfolio-grid-detailed">
+
     <!-- 1. Brand Identity -->
     <div class="portfolio-card-detailed reveal-card"
          onclick="openImageGallery([
@@ -245,18 +263,37 @@
     </div>
 
     <!-- 5. Video Editing -->
-    <div class="portfolio-card-detailed reveal-card"
-        onclick="openYouTubeGallery([
-            'https://www.youtube.com/embed/YEcuYZU6I8c',
-            'https://www.youtube.com/embed/OfZtgRnYhSI'
-        ], 'Video Editing — Speed-Ramped Drone Showcase')">
-        <div class="video-card-preview">
-            <span class="video-play-icon">▶</span>
+    <div class="portfolio-card-detailed reveal-card" onclick="openVideoGallery()">
+        <div class="card-collage">
+            <img src="https://img.youtube.com/vi/YEcuYZU6I8c/hqdefault.jpg" alt="Drone Edit">
+            <img src="https://img.youtube.com/vi/evBot6B2Bt0/hqdefault.jpg" alt="Christian Reflection">
+            <img src="https://img.youtube.com/vi/iUWOZD4MbIo/hqdefault.jpg" alt="Demon Slayer Story">
         </div>
         <h4>Video Editing</h4>
-        <p>Speed-ramped drone edits and short-form samples.</p>
+        <p>Speed-ramped drone edits, reflective shorts, and creative text stories.</p>
     </div>
 
+            <!-- Content Review & Strategy Samples -->
+    <div class="portfolio-card-detailed reveal-card" onclick="openModal('Content Review: Hook Analysis', 'When reviewing a video that starts with a general intro (e.g., \'Hi everyone, today I want to talk about saving money\'), I provide actionable feedback. <br><br><b>My Analysis:</b> The opening lacks a curiosity gap and doesn\'t grab attention in the first 3 seconds. <br><br><b>Recommended Fix:</b> Start with a pain point instead. E.g., \'Still struggling to save money even when you get paid?\' This improves retention and hooks the viewer immediately.')">
+        <h4>Content Review: Hook Analysis</h4>
+        <p>Evaluating video intros to improve audience retention and engagement.</p>
+    </div>
+
+    <div class="portfolio-card-detailed reveal-card" onclick="openModal('Content Review: Pacing', 'When reviewing tutorial or talking-head content, pacing is critical. <br><br><b>My Analysis:</b> I identify unnecessary pauses, repeated points, and moments where the viewer might drop off. <br><br><b>Recommended Fix:</b> I advise on cutting dead air, tightening the script, and adding dynamic captions to keep the video fast-paced and visually stimulating.')">
+        <h4>Content Review: Pacing</h4>
+        <p>Identifying pacing issues and suggesting edits to keep viewers watching.</p>
+    </div>
+
+    <div class="portfolio-card-detailed reveal-card" onclick="openModal('Content Review: Call to Action', 'A video\'s ending is just as important as its beginning. <br><br><b>My Analysis:</b> I review weak endings (e.g., \'That\'s all for today\') that fail to drive action. <br><br><b>Recommended Fix:</b> I suggest specific, actionable CTAs (e.g., \'Save this video,\' \'Comment your thoughts below,\' or \'Click the link in my bio\') to boost engagement metrics.')">
+        <h4>Content Review: Call to Action</h4>
+        <p>Upgrading weak video endings into actionable steps for viewers.</p>
+    </div>
+
+    <div class="portfolio-card-detailed reveal-card" onclick="openModal('Client Support & Workflow Management', 'Managing high-volume content requires strict organization. <br><br><b>My Workflow:</b> I use tools like Notion and Google Sheets to track daily video queues, deadlines, and client feedback. <br><br><b>Client Communication:</b> I handle client inquiries and tech issues via Slack, ensuring a response time of under 24 hours while maintaining high quality standards for published content.')">
+        <h4>Client Support &amp; Workflow</h4>
+        <p>Managing high-volume content queues and supporting clients via Slack.</p>
+    </div>
+    
     <!-- 6. Administrative Support -->
     <div class="portfolio-card-detailed reveal-card" onclick="openModal('Administrative Support', 'Inbox Triage, Calendar Coordination, and Weekly Reports.')">
         <h4>Administrative Support</h4>

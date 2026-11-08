@@ -154,73 +154,142 @@ function closeGallery() {
     document.getElementById('galleryModal')?.remove();
 }
 
-// --- VIDEO GALLERY MODAL ---
-function openVideoGallery(videos, title) {
+// --- VIDEO CATEGORY GALLERY ---
+// Data for the videos
+const videoData = [
+    { id: 'YEcuYZU6I8c', title: 'Drone Showcase 1', desc: 'Speed-ramped aerial view' },
+    { id: 'OfZtgRnYhSI', title: 'Drone Showcase 2', desc: 'Smooth drone presentation' },
+    { id: 'evBot6B2Bt0', title: 'Faith & Community', desc: 'Reflective short film' },
+    { id: 'iUWOZD4MbIo', title: 'Demon Slayer AU', desc: 'Humorous Discord story' }
+];
+
+// --- VIDEO GALLERY (Grid with inline player) ---
+const videoData = [
+    { id: 'YEcuYZU6I8c', title: 'Drone Showcase 1', desc: 'Speed-ramped aerial view' },
+    { id: 'OfZtgRnYhSI', title: 'Drone Showcase 2', desc: 'Smooth drone presentation' },
+    { id: 'evBot6B2Bt0', title: 'Faith & Community', desc: 'Reflective short film' },
+    { id: 'iUWOZD4MbIo', title: 'Demon Slayer AU', desc: 'Humorous Discord story' }
+];
+
+function openVideoGallery() {
+    let gridHTML = '';
+    videoData.forEach((video, index) => {
+        gridHTML += `
+            <div class="video-item">
+                <div class="video-thumbnail" id="thumb-${index}">
+                    <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}">
+                    <button class="play-btn" onclick="playInlineVideo(${index})">▶ Play Video</button>
+                </div>
+                <div class="video-player-container" id="player-${index}" style="display: none;">
+                    <iframe id="iframe-${index}" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <h4>${video.title}</h4>
+                <p>${video.desc}</p>
+            </div>
+        `;
+    });
+
     const modalHTML = `
         <div class="modal-overlay active" id="videoModal" onclick="closeVideoGallery(event)">
-            <div class="modal-content video-modal" onclick="event.stopPropagation()">
+            <div class="modal-content wide-video-modal" onclick="event.stopPropagation()">
                 <button class="modal-close" onclick="closeVideoGallery()">&times;</button>
-                <h3>${title}</h3>
-                <div class="video-wrapper">
-                    <video id="videoPlayer" controls autoplay playsinline>
-                        <source src="${videos[0]}" type="video/mp4">
-                    </video>
+                <h3>Video Editing Portfolio</h3>
+                <p class="portfolio-hint">Click "Play Video" to watch.</p>
+                <div class="video-grid-wide">
+                    ${gridHTML}
                 </div>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function playInlineVideo(index) {
+    // Reset all others to thumbnails
+    videoData.forEach((_, i) => {
+        document.getElementById(`thumb-${i}`).style.display = 'block';
+        const player = document.getElementById(`player-${i}`);
+        player.style.display = 'none';
+        document.getElementById(`iframe-${i}`).src = ''; // Stop playing
+    });
+
+    // Hide the clicked thumbnail, show the player
+    document.getElementById(`thumb-${index}`).style.display = 'none';
+    const activePlayer = document.getElementById(`player-${index}`);
+    activePlayer.style.display = 'block';
+    
+    // Load and play the video
+    document.getElementById(`iframe-${index}`).src = `https://www.youtube.com/embed/${videoData[index].id}?autoplay=1&modestbranding=1&rel=0`;
+}
+
+function closeVideoGallery() {
+    document.getElementById('videoModal')?.remove();
+}
+
+// --- CLEAN VIDEO PLAYER ---
+function openVideoPlayer(startIndex, title) {
+    let current = startIndex;
+
+    const modalHTML = `
+        <div class="modal-overlay active" id="videoPlayerModal" onclick="closeVideoPlayer(event)">
+            <div class="modal-content player-modal" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeVideoPlayer()">&times;</button>
+                <h3>${title}</h3>
+                
+                <div class="player-container">
+                    <!-- Arrows are outside the video-wrapper -->
+                    <button class="player-nav player-prev" onclick="changeVideo(-1)">&#10094;</button>
+                    
+                    <div class="video-wrapper">
+                        <iframe 
+                            id="videoFrame"
+                            src="https://www.youtube.com/embed/${videoData[startIndex].id}?modestbranding=1&rel=0&showinfo=0&controls=1&autoplay=1"
+                            frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    
+                    <button class="player-nav player-next" onclick="changeVideo(1)">&#10095;</button>
+                </div>
+                
                 <div class="gallery-dots" id="videoDots"></div>
-                <p class="gallery-counter" id="videoCounter">1 / ${videos.length}</p>
+                <p class="gallery-counter" id="videoCounter">${current + 1} / ${videoData.length}</p>
             </div>
         </div>
     `;
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 
-    window.__videos = videos;
-    window.__videoCurrent = 0;
+    window.__currentVideoIndex = current;
 
+    // Build dots
     const dotsContainer = document.getElementById('videoDots');
-    videos.forEach((_, i) => {
+    videoData.forEach((_, i) => {
         const dot = document.createElement('span');
-        dot.className = 'gallery-dot' + (i === 0 ? ' active' : '');
-        dot.onclick = () => switchVideo(i);
+        dot.className = 'gallery-dot' + (i === current ? ' active' : '');
+        dot.onclick = () => jumpToVideo(i);
         dotsContainer.appendChild(dot);
     });
-
-    // Swipe support
-    const player = document.getElementById('videoPlayer');
-    let touchStartX = 0;
-    player.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; });
-    player.addEventListener('touchend', (e) => {
-        const diff = touchStartX - e.changedTouches[0].clientX;
-        if (Math.abs(diff) > 50) {
-            const next = diff > 0 ? window.__videoCurrent + 1 : window.__videoCurrent - 1;
-            const wrapped = (next + videos.length) % videos.length;
-            switchVideo(wrapped);
-        }
-    });
 }
 
-function switchVideo(index) {
-    window.__videoCurrent = index;
-    const player = document.getElementById('videoPlayer');
-    player.src = window.__videos[index];
-    player.load();
-    player.play();
-    document.getElementById('videoCounter').textContent = `${index + 1} / ${window.__videos.length}`;
-    updateVideoDots();
+function changeVideo(direction) {
+    let newIndex = window.__currentVideoIndex + direction;
+    if (newIndex < 0) newIndex = videoData.length - 1;
+    if (newIndex >= videoData.length) newIndex = 0;
+    jumpToVideo(newIndex);
 }
 
-function updateVideoDots() {
+function jumpToVideo(index) {
+    window.__currentVideoIndex = index;
+    document.getElementById('videoFrame').src = `https://www.youtube.com/embed/${videoData[index].id}?modestbranding=1&rel=0&showinfo=0&controls=1&autoplay=1`;
+    document.getElementById('videoCounter').textContent = `${index + 1} / ${videoData.length}`;
     document.querySelectorAll('#videoDots .gallery-dot').forEach((dot, i) => {
-        dot.classList.toggle('active', i === window.__videoCurrent);
+        dot.classList.toggle('active', i === index);
     });
 }
 
-function closeVideoGallery() {
-    const modal = document.getElementById('videoModal');
-    if (modal) {
-        const video = modal.querySelector('video');
-        if (video) video.pause();
-        modal.remove();
-    }
+function closeVideoPlayer() {
+    document.getElementById('videoPlayerModal')?.remove();
 }
 
 // --- YOUTUBE GALLERY MODAL ---
@@ -231,13 +300,20 @@ function openYouTubeGallery(embedUrls, title) {
                 <button class="modal-close" onclick="closeYouTubeGallery()">&times;</button>
                 <h3>${title}</h3>
                 <div class="video-wrapper">
-                  <iframe 
-                      id="videoFrame"
-                      src="${embedUrls[0]}"
-                      frameborder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowfullscreen>
-                  </iframe>
+                    <!-- LEFT ARROW -->
+                    <button class="gallery-nav gallery-prev" onclick="switchYouTube(window.__videoCurrent - 1)">&#10094;</button>
+                    
+                    <iframe 
+                        id="videoFrame"
+                        src="${embedUrls[0]}?modestbranding=1&rel=0&showinfo=0&controls=1"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>
+                    
+                    <!-- RIGHT ARROW -->
+                    <button class="gallery-nav gallery-next" onclick="switchYouTube(window.__videoCurrent + 1)">&#10095;</button>
+                </div>
                 <div class="gallery-dots" id="videoDots"></div>
                 <p class="gallery-counter" id="videoCounter">1 / ${embedUrls.length}</p>
             </div>
@@ -257,10 +333,16 @@ function openYouTubeGallery(embedUrls, title) {
     });
 }
 
+// Updated switch function to handle wrap-around (clicking left on the first video goes to the last video)
 function switchYouTube(index) {
+    const total = window.__embedUrls.length;
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+    
     window.__videoCurrent = index;
     document.getElementById('videoFrame').src = window.__embedUrls[index];
-    document.getElementById('videoCounter').textContent = `${index + 1} / ${window.__embedUrls.length}`;
+    document.getElementById('videoCounter').textContent = `${index + 1} / ${total}`;
+    
     document.querySelectorAll('#videoDots .gallery-dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === window.__videoCurrent);
     });
