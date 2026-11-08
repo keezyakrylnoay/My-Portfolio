@@ -156,13 +156,6 @@ function closeGallery() {
 
 // --- VIDEO CATEGORY GALLERY ---
 // Data for the videos
-const videoData = [
-    { id: 'YEcuYZU6I8c', title: 'Drone Showcase 1', desc: 'Speed-ramped aerial view' },
-    { id: 'OfZtgRnYhSI', title: 'Drone Showcase 2', desc: 'Smooth drone presentation' },
-    { id: 'evBot6B2Bt0', title: 'Faith & Community', desc: 'Reflective short film' },
-    { id: 'iUWOZD4MbIo', title: 'Demon Slayer AU', desc: 'Humorous Discord story' }
-];
-
 // --- VIDEO GALLERY (Grid with inline player) ---
 const videoData = [
     { id: 'YEcuYZU6I8c', title: 'Drone Showcase 1', desc: 'Speed-ramped aerial view' },
@@ -178,8 +171,7 @@ function openVideoGallery() {
             <div class="video-item">
                 <div class="video-thumbnail" id="thumb-${index}">
                     <img src="https://img.youtube.com/vi/${video.id}/hqdefault.jpg" alt="${video.title}">
-                    <button class="play-btn" onclick="playInlineVideo(${index})">▶ Play Video</button>
-                </div>
+                    <button class="play-btn" onclick="openBigVideo(${index})">▶ Play Video</button>                </div>
                 <div class="video-player-container" id="player-${index}" style="display: none;">
                     <iframe id="iframe-${index}" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
@@ -204,22 +196,32 @@ function openVideoGallery() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
-function playInlineVideo(index) {
-    // Reset all others to thumbnails
-    videoData.forEach((_, i) => {
-        document.getElementById(`thumb-${i}`).style.display = 'block';
-        const player = document.getElementById(`player-${i}`);
-        player.style.display = 'none';
-        document.getElementById(`iframe-${i}`).src = ''; // Stop playing
-    });
-
-    // Hide the clicked thumbnail, show the player
-    document.getElementById(`thumb-${index}`).style.display = 'none';
-    const activePlayer = document.getElementById(`player-${index}`);
-    activePlayer.style.display = 'block';
+// --- BIG POPUP VIDEO PLAYER ---
+function openBigVideo(index) {
+    // These parameters hide the YouTube titles, logos, and related videos as much as possible
+    const videoUrl = `https://www.youtube.com/embed/${videoData[index].id}?autoplay=1&modestbranding=1&rel=0&showinfo=0&controls=1&iv_load_policy=3`;
     
-    // Load and play the video
-    document.getElementById(`iframe-${index}`).src = `https://www.youtube.com/embed/${videoData[index].id}?autoplay=1&modestbranding=1&rel=0`;
+    const modalHTML = `
+        <div class="modal-overlay active" id="bigVideoModal" onclick="closeBigVideo(event)">
+            <div class="modal-content big-video-modal" onclick="event.stopPropagation()">
+                
+                <!-- This creates the white space above the video for the X button -->
+                <div class="video-modal-header">
+                    <button class="modal-close-btn" onclick="closeBigVideo()">&times;</button>
+                </div>
+                
+                <div class="big-video-wrapper">
+                    <iframe src="${videoUrl}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function closeBigVideo() {
+    document.getElementById('bigVideoModal')?.remove();
 }
 
 function closeVideoGallery() {
