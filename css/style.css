@@ -1503,3 +1503,107 @@ main .hero[id] {
     height: 100%;
     border: none;
 }
+
+/* ==========================================
+   INFINITE MOVING MARQUEE (Make.com Style)
+========================================== */
+.marquee-wrapper {
+    background: #ffffff; /* Matches your right-side hero background */
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--color-border);
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+/* The Faded Edges (so text fades out beautifully) */
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 15%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff 10%, transparent 100%);
+}
+
+.marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff 10%, transparent 100%);
+}
+
+.marquee-content {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    width: max-content;
+    animation: scrollMarquee 35s linear infinite;
+}
+
+/* Pause on hover so people can read your skills */
+.marquee-wrapper:hover .marquee-content {
+    animation-play-state: paused;
+}
+
+.marquee-item {
+    font-family: var(--font-heading); /* Your elegant Cormorant font */
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 700;
+    font-style: italic;
+    color: #002c73; /* Your navy blue */
+    padding: 0 1.5rem;
+    letter-spacing: 0.02em;
+}
+
+.marquee-icon {
+    color: #C9A961; /* Gold accent color */
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+/* The Animation */
+@keyframes scrollMarquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* Mobile Adjustment */
+@media (max-width: 900px) {
+    .marquee-item {
+        font-size: 1.1rem;
+        padding: 0 1rem;
+    }
+    .marquee-wrapper {
+        padding: 1rem 0;
+    }
+}
+
+/* ==========================================
+   CLEAN SECTIONS OVERRIDE (Removes 2-tone backgrounds & lines)
+========================================== */
+
+/* 1. Make the entire website background pure white */
+body {
+    background: #ffffff !important;
+}
+
+/* 2. Hide the weird gradient blobs in the background */
+body::before,
+.section::before,
+.section::after {
+    display: none !important;
+}
+
+/* 3. Remove alternating section background colors */
+.section:nth-child(even),
+.section:nth-child(odd) {
+    background: transparent !important;
+}
