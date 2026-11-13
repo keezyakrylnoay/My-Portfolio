@@ -26,7 +26,7 @@
   font-weight: 500;
   opacity: 0.8;
   margin-bottom: 1.2rem;
-}
+}h
 
 /* --- NEW TOOLS CARDS (Detailed) --- */
 .tools-grid-detailed {
@@ -289,6 +289,8 @@ a {
   color: #002c73;  
   flex-shrink: 0;
   white-space: nowrap; /* Prevents the brand from wrapping */
+  padding-left: 2rem; /* 🔥 Adds space before the K */
+
 }
 
 /* NAV LINKS: All together, in one row */
@@ -578,7 +580,7 @@ main {
   left: 75%; /* Centers her exactly on the split line */
   transform: translateX(-50%);
   width: auto;
-  height: 100%; /* 🔥 MAKES HER TALLER and LARGER */
+  height: 95%; /* 🔥 MAKES HER TALLER and LARGER */
   max-height: 100vh;
   object-fit: contain;
   z-index: 2; 
@@ -600,7 +602,7 @@ main {
 }
 
 .hero-content {
-  max-width: 60%; 
+  max-width: 70%; 
   color: #ffffff;
   padding-right: 1rem;
   /* 🔥 NEW: This pulls the entire text block away from the far left edge */
@@ -616,7 +618,7 @@ main {
 }
 
 .hero-content h1 {
-  font-size: clamp(2rem, 5vw, 4rem);
+  font-size: clamp(1rem, 5vw, 4rem);
   line-height: 1.15;
   margin-bottom: 0.5rem;
   font-family: var(--font-heading);
@@ -632,7 +634,7 @@ main {
 @media (max-width: 900px) {
   /* 🔥 iPhone-safe name fix */
   .hero-content h1 {
-    font-size: clamp(1.6rem, 7vw, 2.4rem);
+    font-size: clamp(1.1rem, 7vw, 2.4rem);
     white-space: normal;
     overflow-wrap: anywhere;
     word-break: break-word;
@@ -640,17 +642,17 @@ main {
 }  
 
 .hero-content .tagline {
-  font-size: clamp(1rem, 1.8vw, 1.4rem);
+  font-size: clamp(0.80rem, 1.8vw, 1.4rem);
   font-weight: 600;
   opacity: 0.9;
   margin-bottom: 1.2rem;
 }
 
 .hero-text {
-  /* 🔥 NEW: Reduced width and added a margin to stop it from hugging the left */
-  max-width: 480px; 
-  margin: 0 0 1.5rem 1rem; /* Adds a small left indent so it sits elegantly */
-  font-size: 1.05rem;
+  /* 🔥 Removed the left margin and increased max-width to stretch naturally */
+  max-width: 100%; 
+  margin: 0 0 1.5rem 0; 
+  font-size: 1rem; /* Slightly larger for better readability */
   opacity: 0.85;
   line-height: 1.6;
 }
@@ -1918,4 +1920,98 @@ section.reveal {
     font-size: 1.05rem;
     line-height: 1.8;
     color: var(--color-text);
+}
+
+/* ==========================================
+   FINAL HERO POLISH (Fixed Spacing & Single Subtitle)
+========================================== */
+
+/* 1. ADJUST HEIGHT AND PADDING SO NAVBAR DOESN'T CUT OFF TEXT */
+.hero {
+    min-height: 75vh !important; /* Gives enough room for the portrait */
+    padding: 0 !important;
+}
+
+.hero-inner {
+    padding: 130px 5% 40px 4% !important; /* 130px pushes text below the sticky navbar */
+}
+
+/* 2. STYLE "HI, I'M" AND NAME */
+.hero-content h1 {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+    line-height: 1.1;
+    margin-bottom: 0.5rem !important;
+}
+
+.hero-content .greeting {
+    font-size: 0.45em !important; 
+    font-weight: 400;
+    font-style: normal;
+    opacity: 0.75;
+    margin-bottom: 0.2rem;
+    letter-spacing: 0.05em;
+}
+
+/* 3. STYLE THE SINGLE SUBTITLE LINE (ICE BLUE COLOR) */
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: clamp(0.9rem, 1.5vw, 1.15rem);
+    font-weight: 500;
+    color: #A5C4E4; /* Soft Ice Blue - complements navy beautifully */
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* 4. ENSURE MOBILE LOOKS GOOD */
+@media (max-width: 900px) {
+    .hero {
+        min-height: auto !important;
+    }
+    .hero-subtitle {
+        text-align: center;
+        font-size: 0.85rem;
+    }
+}
+
+/* ==========================================
+   CINEMATIC EYE CROP BANNER
+========================================== */
+.portfolio-cinematic-banner {
+    width: 100%;
+    height: 90px; /* Adjust this to make the strip thicker or thinner */
+    border-radius: 1.5rem;
+    overflow: hidden;
+    margin-bottom: 2.5rem;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 44, 115, 0.1);
+}
+
+.portfolio-cinematic-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    /* This shifts the image to focus on your face. 
+       You may need to tweak this percentage (e.g., 20%, 30%, 40%) 
+       depending on how the image loads. */
+    object-position: center 25%; 
+    filter: contrast(1.05) brightness(0.95); /* Adds a slight cinematic grade */
+    transition: transform 0.8s ease;
+}
+
+.portfolio-cinematic-banner:hover img {
+    transform: scale(1.03); /* Subtle zoom effect on hover */
+}
+
+/* Mobile Adjustments */
+@media (max-width: 900px) {
+    .portfolio-cinematic-banner {
+        height: 150px; /* Thinner on mobile */
+        border-radius: 1rem;
+    }
+    .portfolio-cinematic-banner img {
+        object-position: center 20%; 
+    }
 }

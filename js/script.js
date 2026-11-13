@@ -159,6 +159,8 @@ function closeGallery() {
 // --- VIDEO GALLERY (Grid with inline player) ---
 const videoData = [
     { id: 'V7hw62jBYhA', title: 'Facing Giants', desc: 'Documentary-style kinetic typography & B-roll edit' },
+    { id: 'huMdaLP4AQE', title: 'TRAUMA', desc: 'Short Advocacy Film & Collaborative Media Production' },
+    { id: 'V46PpMkb8jI', title: 'Faith & Fashion Co.', desc: 'Full-Stack E-Commerce Web Application Demo' },
     { id: 'YEcuYZU6I8c', title: 'Drone Showcase 1', desc: 'Speed-ramped aerial view' },
     { id: 'OfZtgRnYhSI', title: 'Drone Showcase 2', desc: 'Smooth drone presentation' },
     { id: 'evBot6B2Bt0', title: 'Faith & Community', desc: 'Reflective short film' },
