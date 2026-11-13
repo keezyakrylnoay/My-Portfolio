@@ -353,3 +353,28 @@ function switchYouTube(index) {
 function closeYouTubeGallery() {
     document.getElementById('videoModal')?.remove();
 }
+
+// --- WIDE CLICK MODAL FOR EXPERIENCE ---
+function openExpModal(title, description) {
+    if (document.getElementById('expModal')) return;
+
+    const modalHTML = `
+        <div class="modal-overlay active" id="expModal" onclick="closeExpModal()">
+            <div class="modal-content wide-exp-modal" onclick="event.stopPropagation()">
+                <button class="modal-close" onclick="closeExpModal()">&times;</button>
+                <h3>${title}</h3>
+                <p>${description}</p>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function closeExpModal() {
+    document.getElementById('expModal')?.remove();
+}
+
+// Automatically close the popup when the user scrolls down
+window.addEventListener('scroll', () => {
+    closeExpModal();
+});

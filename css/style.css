@@ -637,6 +637,7 @@ main {
     overflow-wrap: anywhere;
     word-break: break-word;
   }
+}  
 
 .hero-content .tagline {
   font-size: clamp(1rem, 1.8vw, 1.4rem);
@@ -951,7 +952,7 @@ main {
   opacity: 1;
 }
 
-}
+
 
 /* ==========================================
    PREMIUM INNER SECTION STYLING
@@ -1606,4 +1607,315 @@ body::before,
 .section:nth-child(even),
 .section:nth-child(odd) {
     background: transparent !important;
+}
+
+/* ==========================================
+   CIRCULAR TOOLS CONSTELLATION (Rope through centers)
+========================================== */
+.tools-constellation {
+    display: flex;
+    flex-direction: column;
+    gap: 3rem; /* Vertical space between rows (about 1 inch) */
+    max-width: 1100px;
+    margin: 3rem auto 2rem;
+    position: relative;
+    z-index: 1;
+    padding: 0 1rem;
+}
+
+.tool-row {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.5rem; /* Horizontal space between circles (about 1 inch) */
+    position: relative;
+    width: 100%;
+    padding-bottom: 30px; 
+}
+
+/* The Arching Rope Line */
+.tool-row::before {
+    content: '';
+    position: absolute;
+    top: 10px; 
+    
+    /* 
+      Since the nodes are 80px wide and we have a 2.5rem (40px) gap, 
+      we adjust the rope to connect perfectly to the centers.
+    */
+    left: 40px; 
+    right: 40px; 
+    
+    border-bottom: 2px dashed rgba(0, 44, 115, 0.25); 
+    border-radius: 0 0 50% 50%; 
+    z-index: 0; 
+    pointer-events: none;
+}
+
+/* Keep the drop heights */
+.tool-row:not(.tech-row)::before { height: 80px; }
+.tech-row::before { height: 65px; }
+
+/* The Node Box */
+.tool-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 80px; /* Made narrower so the flex gap controls the spacing */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1; 
+}
+
+/* The Arching Rope Line */
+.tool-row::before {
+    content: '';
+    position: absolute;
+    
+    /* 1. RAISE THE ENDS UPPER */
+    /* Currently at 35px (the middle). Lowering this number raises the start of the rope. */
+    top: 10px; 
+    
+    /* 2. LENGTHEN IT TO END-TO-END */
+    /* 65px lands exactly in the center of the 130px wide nodes. */
+    /* If you want it to connect the outer edges of the circles instead, change these to 30px. */
+    left: 65px; 
+    right: 65px; 
+    
+    /* 3. THE DROP (Adjust this to make the bow deeper or shallower) */
+    height: 80px; /* Increase this to drop the rope even lower */
+    
+    border-bottom: 2px dashed rgba(0, 44, 115, 0.25); 
+    border-radius: 0 0 50% 50%; 
+    z-index: 0; 
+    pointer-events: none;
+}
+
+/* We also need to update the specific heights since you want a deeper drop */
+.tool-row:not(.tech-row)::before {
+    height: 80px; /* Dropped from 40px to 80px */
+}
+
+.tech-row::before {
+    height: 65px; /* Dropped from 25px to 65px */
+}
+
+/* The Math: Set the exact drop of the curve to match the icons */
+.tool-row:not(.tech-row)::before {
+    height: 60px; /* Drops exactly 40px to hit the center of the 3rd icon */
+}
+
+.tech-row::before {
+    height: 25px; /* Drops exactly 25px to hit the center of the 2nd/3rd icons */
+}
+
+.tool-node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 130px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1; /* Sits above the rope line */
+}
+
+/* --- STAGGERING FOR 5-ITEM ROWS --- */
+.tool-row:not(.tech-row) .tool-node:nth-child(1) { margin-top: 0px; }
+.tool-row:not(.tech-row) .tool-node:nth-child(2) { margin-top: 20px; }
+.tool-row:not(.tech-row) .tool-node:nth-child(3) { margin-top: 40px; } /* Deepest drop */
+.tool-row:not(.tech-row) .tool-node:nth-child(4) { margin-top: 20px; }
+.tool-row:not(.tech-row) .tool-node:nth-child(5) { margin-top: 0px; }
+
+/* --- STAGGERING FOR 4-ITEM TECH ROW --- */
+.tech-row .tool-node:nth-child(1) { margin-top: 0px; }
+.tech-row .tool-node:nth-child(2) { margin-top: 25px; }
+.tech-row .tool-node:nth-child(3) { margin-top: 25px; }
+.tech-row .tool-node:nth-child(4) { margin-top: 0px; }
+
+
+/* --- THE OUTLINED CIRCLE LOOK --- */
+.tool-circle {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: #ffffff; /* White background masks the rope so it looks like it connects them */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #002c73; 
+    box-shadow: 0 4px 15px rgba(0, 44, 115, 0.08);
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-size: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+/* Hover Effects */
+.tool-node:hover {
+    z-index: 10;
+}
+
+.tool-node:hover .tool-circle {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 44, 115, 0.15), 0 0 20px rgba(0, 44, 115, 0.05);
+    border-color: #C9A961; 
+}
+
+.tool-label {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #002c73;
+    text-align: center;
+    margin-top: 12px;
+    transition: color 0.3s ease;
+    line-height: 1.3;
+}
+
+.tool-node:hover .tool-label {
+    color: #C9A961; 
+}
+
+/* --- HOVER DESCRIPTION TOOLTIP --- */
+.tool-desc {
+    position: absolute;
+    top: 105%; 
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #002c73; 
+    color: #ffffff;
+    padding: 0.8rem 1rem;
+    border-radius: 0.75rem;
+    font-size: 0.8rem;
+    line-height: 1.4;
+    width: max-content;
+    max-width: 220px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 100;
+    box-shadow: 0 10px 30px rgba(0, 44, 115, 0.2);
+    pointer-events: none;
+}
+
+.tool-desc::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent #002c73 transparent;
+}
+
+.tool-node:hover .tool-desc {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Mobile Adjustments */
+@media (max-width: 900px) {
+    .tools-constellation {
+        gap: 1.5rem;
+    }
+    .tool-row {
+        flex-wrap: wrap;
+        gap: 2rem 1rem;
+        padding-bottom: 20px;
+    }
+    .tool-row::before {
+        display: none; 
+    }
+    
+    .tool-row .tool-node {
+        margin-top: 0 !important; 
+    }
+    
+    .tool-node {
+        width: 100px;
+    }
+    .tool-circle {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    .tool-label {
+        font-size: 0.75rem;
+    }
+    .tool-desc {
+        display: none; 
+    }
+}
+
+/* ==========================================
+   MOBILE BUG FIXES (Experience Section & Grid)
+========================================== */
+
+/* 1. Force sections to be visible so they never get stuck hidden on mobile */
+section.reveal {
+    opacity: 1 !important;
+    transform: none !important;
+}
+
+/* 2. Make sure the Portfolio grid stacks correctly on mobile */
+@media (max-width: 900px) {
+    .portfolio-grid-detailed {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ==========================================
+   EXPERIENCE MOBILE FIX
+========================================== */
+@media (max-width: 900px) {
+    #experience {
+        opacity: 1 !important;
+        transform: none !important;
+        display: block !important;
+    }
+    
+    #experience .timeline-item {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+}
+
+/* Make Experience Cards look clickable */
+.timeline-item {
+    transition: all 0.3s ease;
+}
+
+.timeline-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 44, 115, 0.1);
+    border-color: rgba(0, 44, 115, 0.2);
+}
+
+/* ==========================================
+   WIDE EXPERIENCE POPUP
+========================================== */
+.wide-exp-modal {
+    max-width: 800px !important; /* Makes it much wider */
+    width: 90%;
+    max-height: none !important; /* Removes the height limit */
+    overflow-y: hidden !important; /* Removes the scrollbar */
+    padding: 3rem 4rem !important; /* Gives it more breathing room */
+    text-align: center;
+}
+
+.wide-exp-modal h3 {
+    color: #002c73;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+}
+
+.wide-exp-modal p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text);
 }
